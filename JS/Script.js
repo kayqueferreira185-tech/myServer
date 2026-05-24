@@ -33,3 +33,36 @@ function criaPlano(plano){
  sessao.appendChild(cardPlano);
 }
 percorreArray();
+
+const todos = document.querySelectorAll('.planos');
+
+sessao.addEventListener('click', (e) => {
+  const guardaEvento = e.target.closest('.planos');
+  if (!guardaEvento){
+    return;
+  };
+  if (guardaEvento.classList.contains('selected')){
+    guardaEvento.classList.remove('selected');
+  }else {
+    limpaSelecao();
+    guardaEvento.classList.add('selected');
+  }
+});
+
+const guardaMain = document.querySelector('.principal');
+
+guardaMain.addEventListener('click' , (e) => {
+  const guardaEvento = e.target.closest('.cards');
+  if (guardaEvento){
+    return;
+  }else{
+    limpaSelecao();
+  };
+});
+
+function limpaSelecao(){
+  for (let i = 0; i < todos.length; i++){
+    todos[i].classList.remove('selected');
+  }
+};
+
