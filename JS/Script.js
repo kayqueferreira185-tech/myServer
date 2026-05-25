@@ -19,6 +19,7 @@ function criaPlano(plano){
   cardParagrafo.innerText =  `R$ ${plano.preco} / ${plano.periodo}`;
   const listaCard = document.createElement('ul');
   const botaoCard = document.createElement('button');
+  botaoCard.classList.add('botaoAssinatura')
   botaoCard.innerText = 'Assine já';
 
  for (let i = 0 ;i < plano.recursos.length ; i ++){
@@ -65,4 +66,17 @@ function limpaSelecao(){
     todos[i].classList.remove('selected');
   }
 };
+
+
+
+sessao.addEventListener('click', (e) => { 
+   const eventoFeedback = e.target.closest('.botaoAssinatura');
+
+
+   if (!eventoFeedback){
+    return
+   }
+
+
+});
 
