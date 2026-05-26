@@ -117,6 +117,7 @@ function buildFeedbackUi(plano) {
   });
 
   const botaoFeed = document.createElement('button');
+  botaoFeed.classList.add('botaoFeedback')
   botaoFeed.innerText = 'Cancelar assinatura';
 
   const linkAssinatura = document.createElement('a');
@@ -143,3 +144,11 @@ function criarFeedback(plano) {
   areaFeedback.appendChild(ui);
   areaFeedback.classList.add('active');
 }
+areaFeedback.addEventListener('click', (e) =>{ 
+   const botaoFeedCancel = e.target.closest('.botaoFeedback');
+   if (!botaoFeedCancel){
+    return
+   };
+   areaFeedback.classList.remove('active');
+   areaFeedback.innerHTML ="";
+});
