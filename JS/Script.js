@@ -90,27 +90,56 @@ function limparFeedback() {
   areaFeedback.innerHTML = "";
 }
 
-function criarFeedback(plano) {
-  limparFeedback();
+
+
+function buildFeedbackUi(plano) {
+  const divFeedback = document.createElement('div');
+  divFeedback.classList.add('divGeral')
+
   const tituloFeed = document.createElement('h2');
-  tituloFeed.innerHTML = plano.nome;
+  tituloFeed.innerText = plano.nome;
+
   const paragrafoValor = document.createElement('p');
-  paragrafoValor.innerHTML = `Valor do plano: ${plano.preco}`;
-  const lista = document.createElement('ul')
+  paragrafoValor.innerHTML = `Valor do plano: `;
+
+  const spanPreco = document.createElement('span');
+  spanPreco.innerText = plano.preco;
+  spanPreco.classList.add('preco');
+
+  paragrafoValor.appendChild(spanPreco);
+
+  const lista = document.createElement('ul');
+
+  plano.recursos.forEach((item) => {
+    const li = document.createElement('li');
+    li.innerText = item;
+    lista.appendChild(li);
+  });
 
   const botaoFeed = document.createElement('button');
-  botaoFeed.innerHTML ='Cancelar assinatura';
+  botaoFeed.innerText = 'Cancelar assinatura';
+
   const linkAssinatura = document.createElement('a');
-  linkAssinatura.innerHTML = 'Continuar assinatura';
-  plano.recursos.forEach((item) => {
-  const li = document.createElement('li');
-  li.innerText = item;
-  lista.appendChild(li);
-});
-areaFeedback.appendChild(tituloFeed);
-areaFeedback.appendChild(paragrafoValor);
-areaFeedback.appendChild(lista);
-areaFeedback.appendChild(botaoFeed);
-areaFeedback.appendChild(linkAssinatura);
-areaFeedback.classList.add('active');
+  linkAssinatura.innerText = 'Continuar assinatura';
+  linkAssinatura.href = '#';
+
+  const divAcoes = document.createElement('div');
+  divAcoes.classList.add('divFlex');
+  divAcoes.appendChild(linkAssinatura);
+  divAcoes.appendChild(botaoFeed);
+
+  divFeedback.appendChild(tituloFeed);
+  divFeedback.appendChild(paragrafoValor);
+  divFeedback.appendChild(lista);
+  divFeedback.appendChild(divAcoes);
+
+  return divFeedback;
+}
+function criarFeedback(plano) {
+  limparFeedback();
+
+  const ui = buildFeedbackUi(plano);
+
+  areaFeedback.appendChild(ui);
+  areaFeedback.classList.add('active');
 }
