@@ -5,6 +5,7 @@ const planos = [
   {id: 'Premium', nome:'Premium',preco:7.95, periodo:'Por mês', recursos:['5 Websites', '3 GB de armazenamento', 'Transferência ilimitada', '10 horas de suporte mensais']},
   {id: 'Gold', nome:'Gold',preco:13.95, periodo:'Por mês', recursos:['10 Websites', '30 GB de armazenamento','Transferência ilimitada', '30 Horas de suporte mensais', 'Email personalizado']}
 ];
+let planoAtual = null;
 function percorreArray(){
   for(let i = 0;i < planos.length; i++){
   criaPlano(planos[i]);
@@ -36,6 +37,8 @@ function criaPlano(plano){
 }
 percorreArray();
 
+
+
 const todos = document.querySelectorAll('.planos');
 
 sessao.addEventListener('click', (e) => {
@@ -50,16 +53,21 @@ sessao.addEventListener('click', (e) => {
     guardaEvento.classList.add('selected');
   }
 });
+const areaFeedback = document.querySelector('.areaFeedback');
 
 const guardaMain = document.querySelector('.principal');
 
 guardaMain.addEventListener('click' , (e) => {
   const guardaEvento = e.target.closest('.cards');
+  if(areaFeedback.classList.contains('active')){
+    return;
+  }
   if (guardaEvento){
     return;
   }else{
     limpaSelecao();
   };
+
 });
 
 function limpaSelecao(){
@@ -80,11 +88,12 @@ sessao.addEventListener('click', (e) => {
    const planoClicado = planos.find((item) => {
     return item.id === idDoPlano;
   })
-
+  
+  planoAtual = planoClicado
   criarFeedback(planoClicado);
 
 });
-const areaFeedback = document.querySelector('.areaFeedback');
+
 
 function limparFeedback() {
   areaFeedback.innerHTML = "";
@@ -140,15 +149,84 @@ function criarFeedback(plano) {
   limparFeedback();
 
   const ui = buildFeedbackUi(plano);
+ 
 
   areaFeedback.appendChild(ui);
   areaFeedback.classList.add('active');
+  if (areaFeedback.classList.contains('active')){
+    ui.classList.add('show')
+  }
 }
-areaFeedback.addEventListener('click', (e) =>{ 
-   const botaoFeedCancel = e.target.closest('.botaoFeedback');
-   if (!botaoFeedCancel){
-    return
-   };
-   areaFeedback.classList.remove('active');
-   areaFeedback.innerHTML ="";
+
+areaFeedback.addEventListener('click', (e) =>{
+   const botaoConfirmaCancel = e.target.closest('.botaoFeedback');
+   if (!botaoConfirmaCancel){
+    return;
+   }
+  const novoModal = buildCancelModal(planoAtual);
+  trocarModal(novoModal);
+   
 });
+
+function buildCancelFeedback(){
+  areaFeedback.innerHTML = ""
+  
+}
+function trocarModal(novoModal){
+  areaFeedback.innerHTML ="";
+  areaFeedback.appendChild(novoModal);
+}
+function buildCancelModal(plano){
+  const divPrincipalModalCancel = document.createElement('div');
+  const divGuardaIcone = document.createElement('div');
+ divGuardaIcone.innerHTML = `
+   <svg xmlns="http://www.w3.org/2000/svg" 
+    fill="none" 
+    viewBox="0 0 24 24" 
+    stroke-width="1.5" 
+    stroke="currentColor" 
+    class="size-6">
+
+  <path 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+    d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" 
+  />
+</svg>
+`;
+const tituloCancelModal = document.createElement('h2');
+tituloCancelModal.innerText = 'Tem certeza que deseja cancelar sua assinatura?';
+const subtituloCancelModal = document.createElement('h3');
+subtituloCancelModal.innerText = `Ao cancelar, você perderá os benefícios do seu plano ${plano.nome}`;
+const areaMostraPerdasPlano = document.createElement('div');
+const ulModalCancel =document.createElement('ul');
+plano.recursos.forEach((item) => {
+    const itensLista = document.createElement('li');
+    itensLista.innerText = item;
+    ulModalCancel.appendChild(itensLista);
+  });
+areaMostraPerdasPlano.innerText = `Você perderá:`;
+areaMostraPerdasPlano.appendChild(ulModalCancel);
+
+const botaoContinuarModalCancel= document.createElement('button');
+botaoContinuarModalCancel.innerText = 'Continuar';
+botaoContinuarModalCancel.classList.add('botao-continuarModal');
+const confirmacaoCancelamentoModal = document.createElement('button'); 
+confirmacaoCancelamentoModal.innerText = 'Cancelar assinatura'
+confirmacaoCancelamentoModal.classList.add('botao-cancelarModal')
+const divAcoes = document.createElement('div');
+divAcoes.appendChild(botaoContinuarModalCancel);
+divAcoes.appendChild(confirmacaoCancelamentoModal);
+divPrincipalModalCancel.appendChild(divGuardaIcone);
+divPrincipalModalCancel.appendChild(tituloCancelModal);
+divPrincipalModalCancel.appendChild(subtituloCancelModal);
+divPrincipalModalCancel.appendChild(areaMostraPerdasPlano);
+divPrincipalModalCancel.appendChild(divAcoes);
+
+
+divPrincipalModalCancel.classList.add('divModalCancel');
+divPrincipalModalCancel.classList.add('aparecer');
+
+return divPrincipalModalCancel;
+
+}
