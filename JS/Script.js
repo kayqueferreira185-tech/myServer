@@ -194,10 +194,11 @@ function buildCancelModal(plano){
   />
 </svg>
 `;
+divGuardaIcone.classList.add('estilizacao-svg')
 const tituloCancelModal = document.createElement('h2');
 tituloCancelModal.innerText = 'Tem certeza que deseja cancelar sua assinatura?';
 const subtituloCancelModal = document.createElement('h3');
-subtituloCancelModal.innerText = `Ao cancelar, você perderá os benefícios do seu plano ${plano.nome}`;
+subtituloCancelModal.innerHTML =`Ao cancelar, você perderá os benefícios do seu plano <em>${plano.nome}</em>:`;
 const areaMostraPerdasPlano = document.createElement('div');
 const ulModalCancel =document.createElement('ul');
 plano.recursos.forEach((item) => {
@@ -205,8 +206,9 @@ plano.recursos.forEach((item) => {
     itensLista.innerText = item;
     ulModalCancel.appendChild(itensLista);
   });
-areaMostraPerdasPlano.innerText = `Você perderá:`;
+areaMostraPerdasPlano.innerHTML = `<p>Você perderá:</p>`;
 areaMostraPerdasPlano.appendChild(ulModalCancel);
+areaMostraPerdasPlano.classList.add('areaPerdaModal')
 
 const botaoContinuarModalCancel= document.createElement('button');
 botaoContinuarModalCancel.innerText = 'Continuar';
@@ -215,6 +217,7 @@ const confirmacaoCancelamentoModal = document.createElement('button');
 confirmacaoCancelamentoModal.innerText = 'Cancelar assinatura'
 confirmacaoCancelamentoModal.classList.add('botao-cancelarModal')
 const divAcoes = document.createElement('div');
+divAcoes.classList.add('botoesCancelModal');
 divAcoes.appendChild(botaoContinuarModalCancel);
 divAcoes.appendChild(confirmacaoCancelamentoModal);
 divPrincipalModalCancel.appendChild(divGuardaIcone);

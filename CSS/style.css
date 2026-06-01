@@ -146,12 +146,6 @@ footer{
     transition: opacity 0.2s ease;
 }
 
-.areaFeedback.active {
-  
-  opacity: 1;
-  pointer-events: auto;
-}
-
 .divGeral{
    display: flex;
    flex-direction: column;
@@ -191,8 +185,16 @@ footer{
 
 }
 .divModalCancel.aparecer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
     opacity: 1;
     transform: translateY(0) scale(1);
+}
+.divModalCancel h2{
+    text-align: center;
 }
 
 .areaFeedback ul{
@@ -226,7 +228,7 @@ footer{
     padding-bottom: 12px;
     
 }
-.areaFeedback button{
+.divGeral button{
     background-color: rgb(237, 91, 91);
     color: black;
     padding: 8px;
@@ -237,7 +239,7 @@ footer{
 }
 
 
-.areaFeedback button:hover{
+.divGeral button:hover{
     background-color: rgb(222, 37, 37);
     color: rgb(231, 192, 192);
 
@@ -252,5 +254,55 @@ footer{
     padding: 8px;
     border-radius: 999px;
     font-size: 14px;
+}
+.estilizacao-svg{
+    min-width: 52px;
+    max-width: 62px;
+    color: rgb(232, 20, 20);
+    
+    
+}
+.areaPerdaModal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+.areaPerdaModal ul{
+    list-style: disc;
+   
+}
+
+.botoesCancelModal {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+.botao-cancelarModal{
+  background: #e5e7eb;
+  color: #111;
+  padding: 10px;
+  transition: 0.2s;
+}
+.botao-continuarModal{
+    background-color: rgb(176, 250, 65);
+    padding: 10px;
+    transition: 0.2s ;
+
+}
+.botao-continuarModal:hover{
+    background-color: rgb(151, 251, 2);
+    
+}
+.botao-cancelarModal:hover{
+    background-color: rgba(255, 0, 0, 0.15);
+    color: rgb(236, 229, 229);
+}
+.botoesCancelModal button{
+    border-radius: 999px;
+    border: none;
+    font-size: 16px; 
+    cursor: pointer;
 }
 
