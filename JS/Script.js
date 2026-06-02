@@ -154,17 +154,29 @@ function criarFeedback(plano) {
   areaFeedback.appendChild(ui);
   areaFeedback.classList.add('active');
   if (areaFeedback.classList.contains('active')){
-    ui.classList.add('show')
+    ui.classList.add('show');
   }
 }
 
 areaFeedback.addEventListener('click', (e) =>{
    const botaoConfirmaCancel = e.target.closest('.botaoFeedback');
-   if (!botaoConfirmaCancel){
+  if (botaoConfirmaCancel){
+   const novoModal = buildCancelModal(planoAtual);
+   trocarModal(novoModal);
+   return;
+  }
+   
+   const botaoCancelarDefinitivo = e.target.closest('.botao-cancelarModal');
+   if(botaoCancelarDefinitivo){
+    limpaSelecao();
+    buildCancelFeedback();
+    areaFeedback.classList.remove('active');
     return;
-   }
-  const novoModal = buildCancelModal(planoAtual);
-  trocarModal(novoModal);
+   };
+   const botaoRetornarPlanoA = e.target.closest('.botao-continuarModal')
+    if (botaoRetornarPlanoA){
+     criarFeedback(planoAtual);
+   };
    
 });
 
