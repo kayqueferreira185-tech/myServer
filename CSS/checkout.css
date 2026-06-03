@@ -1,0 +1,109 @@
+body{
+    min-height: 100vh;
+}
+.titulo-pagamento{
+    text-align: center;
+}
+
+.area-checkout{
+    width: 100%;
+    max-width: 1000px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    align-items: center;
+    
+    border-radius: 16px;
+    padding: 26px;
+    
+}
+.area-identificacao{
+    display: flex;
+    flex-direction: column;
+}
+.valor-dinamico{
+    width: 100%;
+    max-width: 400px;
+    border: solid 2px rgb(176, 250, 65);
+    padding: 16px;
+}
+
+.area-pix img{
+  width: 100%;
+  max-width: 100px; 
+  background-color: white;
+   
+        
+}
+.dados-user{
+    display: flex;
+    flex-direction: column;
+    border: solid  2px rgb(176, 250, 65);
+    padding: 26px;
+    border-radius: 16px;
+}
+.dados-usuario{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.botoesCheckout-CTA{
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+
+}
+.botaoCheckout-cartao{
+    background-color: rgb(176, 250, 65);
+
+    border: none;
+    padding: 12px;
+    border-radius: 999px;
+}
+.botaoCheckout-pix{
+    background-color: rgb(176, 250, 65);
+    border: none;
+    padding: 12px;
+    border-radius: 999px;
+
+}
+.area-pagamento{
+    display: flex;
+    flex-direction: column;
+    border: solid  2px rgb(176, 250, 65);
+    padding: 26px;
+    border-radius: 16px;
+}
+.formulario-pagamento{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: solid 2px rgb(176, 250, 65);
+    padding: 26px;
+    border-radius: 16px;
+}
+.area-pix {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    border: solid rgb(176, 250, 65);
+    padding: 26px;
+    border-radius: 16px;
+}
+.hidden{
+   display: none;
+}
+.input-padrao{
+    width: 100%;
+    padding: 12px;
+    border: 2px solid rgb(176, 250, 65);
+    border-radius: 8px;
+    
+}
+.input-padrao:focus{
+    outline: none;
+}
