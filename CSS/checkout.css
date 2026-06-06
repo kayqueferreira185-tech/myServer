@@ -24,7 +24,7 @@ body{
 }
 .valor-dinamico{
     width: 100%;
-    max-width: 400px;
+    max-width: 300px;
     border: solid 2px rgb(176, 250, 65);
     padding: 16px;
 }
@@ -106,4 +106,10 @@ body{
 }
 .input-padrao:focus{
     outline: none;
+}
+.checkout-esquerda{
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+
 }
