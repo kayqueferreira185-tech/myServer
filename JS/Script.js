@@ -58,6 +58,8 @@ sessao.addEventListener('click', (e) => {
   })
   
   planoAtual = planoClicado
+   localStorage.setItem('planoSelecionado', planoClicado.id);
+
   criarFeedback(planoClicado);
 
 });
