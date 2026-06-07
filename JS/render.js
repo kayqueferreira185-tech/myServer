@@ -26,3 +26,31 @@ export function criaPlano(plano,sessao){
 export function renderPlanos(planos, sessao) {
   planos.forEach((plano) => criaPlano(plano, sessao));
 }
+
+
+export function renderizaCheckoutDescricao(planoSelecionado){
+
+  if (!planoSelecionado) return;
+
+  const dadosDinamicos = document.createElement('div');
+  dadosDinamicos.classList.add('valor-dinamico');
+  const tituloCheckout = document.createElement('h2');
+  tituloCheckout.innerText = 'Confira aqui sua compra:';
+  const checkoutParagrafo =  document.createElement('p');
+  checkoutParagrafo.innerText = `valor do plano: R$${planoSelecionado.preco}`
+  const listaCheckout = document.createElement('ul');
+
+  planoSelecionado.recursos.forEach((item) =>{
+
+    const itensLista = document.createElement('li');
+    itensLista.innerText = item;
+    listaCheckout.appendChild(itensLista);
+  });    
+  dadosDinamicos.appendChild(tituloCheckout);
+  dadosDinamicos.appendChild(checkoutParagrafo);
+  dadosDinamicos.appendChild(listaCheckout);
+
+  const cardHtmlCheckout = document.querySelector('.checkout-card');
+  cardHtmlCheckout.appendChild(dadosDinamicos);
+
+}

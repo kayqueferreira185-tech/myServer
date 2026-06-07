@@ -1,5 +1,6 @@
 
 import planos from "../dados/planos.js";
+import{renderizaCheckoutDescricao} from './render.js';
 
 const idPlanoPersistido = localStorage.getItem('planoSelecionado');
 if (!idPlanoPersistido) {
@@ -14,4 +15,4 @@ if(!planoSelecionado){
     alert('você não pode prosseguir');
     window.location.href = "index.html";
 }
-console.log('valor do storage:', idPlanoPersistido);
+renderizaCheckoutDescricao(planoSelecionado);
