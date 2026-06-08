@@ -35,7 +35,9 @@ export function renderizaCheckoutDescricao(planoSelecionado){
   const dadosDinamicos = document.createElement('div');
   dadosDinamicos.classList.add('valor-dinamico');
   const tituloCheckout = document.createElement('h2');
-  tituloCheckout.innerText = 'Confira aqui sua compra:';
+  tituloCheckout.innerText = 'Confira aqui seu plano:';
+  const NomePlanoCheckoutDinamic = document.createElement('h3');
+  NomePlanoCheckoutDinamic.innerText = `${planoSelecionado.nome}`;
   const checkoutParagrafo =  document.createElement('p');
   checkoutParagrafo.innerText = `valor do plano: R$${planoSelecionado.preco}`
   const listaCheckout = document.createElement('ul');
@@ -45,8 +47,10 @@ export function renderizaCheckoutDescricao(planoSelecionado){
     const itensLista = document.createElement('li');
     itensLista.innerText = item;
     listaCheckout.appendChild(itensLista);
-  });    
+  });   
+   
   dadosDinamicos.appendChild(tituloCheckout);
+  dadosDinamicos.appendChild(NomePlanoCheckoutDinamic);
   dadosDinamicos.appendChild(checkoutParagrafo);
   dadosDinamicos.appendChild(listaCheckout);
 

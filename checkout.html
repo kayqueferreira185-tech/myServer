@@ -10,13 +10,33 @@
     <script type="module" src="JS/checkout.js" defer></script>
 </head>
 <body>
-    <header class="titulo-pagamento">
-        <h1>Área de pagamentos</h1>
+        <header>
+        <div class="banner">
+                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icone">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z" />
+</svg>
+        <p>MYSERVER</p>
+        <nav>
+            <a href="#" aria-label="Retornar a aba principal">Home</a>
+            <a href="#" aria-label="Ir para planos">Planos</a>
+            <a href="#" aria-label="Ir para suporte">Suporte</a>
+            <a href="#" aria-label="Ir para contato">Contato</a>
+        </nav>
+        </div>
     </header>
+    
+        <h1>Área de pagamentos</h1>
+
     <main class="area-checkout">
    <div class="checkout-esquerda">
-    <section class="dados-user">
-       <h2>Digite aqui seus dados</h2> 
+      <section class="dados-user">
+       <div class="comporta-icone-Svg">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icone">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+</svg>
+
+         <h2>Digite aqui seus dados</h2> 
+         </div>
         <form class="dados-usuario">
             <label for="nome">Nome Completo</label>
             <input class="input-padrao" type="text" id="nome" name="nome" placeholder="Ex: João da Silva">
@@ -26,34 +46,56 @@
             <input class="input-padrao" type="tel" id="telefone" name="telefone" placeholder="(11) 989968626">
         </form>
     </section>   
-    <section class="area-pagamento">
-       <h2>Informações de pagamento</h2> 
-        <div class="botoesCheckout-CTA">
-            <button class="botaoCheckout-cartao">Pagamento cartão</button>
-            <button class="botaoCheckout-pix">Pagamento pix</button>
-        </div>
-        <div class="area-cartao">
-          <form class="formulario-pagamento">
-                <label for="numero-cartao">Número cartão:</label>
-                <input class="input-padrao" type="text" maxlength="19" id="numero-cartao" placeholder="Ex: 4564 8585 7575 3546" name="numeroCartao">
-                <label for="validade">Validade do cartão:</label> 
-                <input class="input-padrao" type="text" maxlength="10" id="validade" name="validade" placeholder="24/11">
-                <label for="cvv">Cvv:</label>
-                <input class="input-padrao" type="password" maxlength="3" id="CVC" name="codigoValidade" placeholder="Ex:123">
-          </form> 
-        </div>   
+ <section class="area-pagamento">
+    <div class="comporta-icone-Svg">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icone">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
+</svg>
+    <h2>Informações de pagamento</h2>
+    </div>
+    <div class="botoesCheckout-CTA">
+        <button class="botaoCheckout-cartao">Pagamento cartão</button>
+        <button class="botaoCheckout-pix">Pagamento pix</button>
+    </div>
+    <div class="area-cartao">
+        <form class="formulario-pagamento">
+            <label for="numero-cartao">Número cartão:</label>
+            <input
+                class="input-padrao"
+                type="text"
+                maxlength="19"
+                id="numero-cartao"
+                placeholder="Ex: 4564 8585 7575 3546"
+                name="numeroCartao"
+            >
+            <div class="linha-cartao">
+                <div class="campo-cartao">
+                    <label for="validade">Validade do cartão:</label>
+                    <input class="input-padrao" type="text"  maxlength="10" id="validade" name="validade" placeholder="24/11"
+                    >
+                </div>
+                <div class="campo-cartao">
+                    <label for="CVC">CVV:</label>
+                    <input class="input-padrao" type="password" maxlength="3" id="CVC" name="codigoValidade" placeholder="Ex:123"
+                    >
+                </div>
+
+            </div>
+        </form>
         <div class="area-pix hidden">
-            <img src="assets/imagens/qr-code-plus.png" alt="QR code para pagamento via pix">
-            <span>pix apenas para fins de portfólio</span>
-     
+            <img
+                src="assets/imagens/qr-code-plus.png"
+                alt="QR code para pagamento via pix"
+            >
+            <span>Pix apenas para fins de portfólio</span>
         </div>
-        </section> 
+    </div>
+</section>
     </div>  
       
        <aside class="checkout-resumo">   
         <section class="area-identificacao">
             <div class="checkout-card">
-             <h2>Descrição de compra</h2>
             </div>
         </section>
    </aside> 

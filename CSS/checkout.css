@@ -1,3 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body{
     min-height: 100vh;
 }
@@ -22,12 +28,7 @@ body{
     display: flex;
     flex-direction: column;
 }
-.valor-dinamico{
-    width: 100%;
-    max-width: 300px;
-    border: solid 2px rgb(176, 250, 65);
-    padding: 16px;
-}
+
 
 .area-pix img{
   width: 100%;
@@ -40,8 +41,20 @@ body{
     display: flex;
     flex-direction: column;
     border: solid  2px rgb(176, 250, 65);
-    padding: 26px;
+    padding: 20px;
     border-radius: 16px;
+    
+}
+.comporta-icone-Svg{
+    display: flex;
+    gap: 10px 
+
+}
+
+.icone{
+    width: 95%;
+    max-width: 26px;
+    color: rgb(176, 250, 65) ;
 }
 .dados-usuario{
     display: flex;
@@ -51,19 +64,22 @@ body{
 .botoesCheckout-CTA{
     display: flex;
     gap: 16px;
-    justify-content: center;
+    justify-content: flex-start;
 
 }
 .botaoCheckout-cartao{
     background-color: rgb(176, 250, 65);
-
+    width: 100%;
+    max-width: 180px;
     border: none;
-    padding: 12px;
+    padding: 10px;
     border-radius: 999px;
 }
 .botaoCheckout-pix{
     background-color: rgb(176, 250, 65);
     border: none;
+    width: 100%;
+    max-width: 180px;
     padding: 12px;
     border-radius: 999px;
 
@@ -71,6 +87,7 @@ body{
 .area-pagamento{
     display: flex;
     flex-direction: column;
+    gap: 16px;
     border: solid  2px rgb(176, 250, 65);
     padding: 26px;
     border-radius: 16px;
@@ -83,6 +100,16 @@ body{
     padding: 26px;
     border-radius: 16px;
 }
+.linha-cartao{
+    display: flex;
+    gap: 12px;   
+}
+.campo-cartao{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .area-pix {
     width: 100%;
     max-width: 700px;
@@ -111,5 +138,29 @@ body{
     display: flex;
     flex-direction: column;
     gap: 36px;
+    flex: 2;
+
+}
+.valor-dinamico{
+    width: 100%;
+    max-width: 400px;
+    border: solid 2px rgb(176, 250, 65);
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 16px;
+    
+}
+
+.checkout-card ul{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    
+}
+.valor-dinamico h3{
+    font-style: italic;
+    color: rgb(176, 250, 65);
 
 }
