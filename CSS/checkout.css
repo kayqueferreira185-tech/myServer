@@ -13,13 +13,12 @@ body{
 
 .area-checkout{
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 30px auto;
     display: flex;
     flex-direction: row;
     gap: 32px;
-    align-items: center;
-    
+    align-items: stretch;
     border-radius: 16px;
     padding: 26px;
     
@@ -139,7 +138,8 @@ body{
     display: flex;
     flex-direction: column;
     gap: 36px;
-    flex: 2;
+    flex: 1.5;
+    
 
 }
 .valor-dinamico{
@@ -164,4 +164,18 @@ body{
     font-style: italic;
     color: rgb(176, 250, 65);
 
+}
+.checkout-resumo {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 3;
+  border: solid rgb(176, 250, 65);
+  padding: 26px;
+  border-radius: 16px;
+  max-width: 450px;
+}
+.area-icone-titulo{
+    border-bottom: solid 1px rgb(176, 250, 65);
+    margin-bottom: 16px;
 }
