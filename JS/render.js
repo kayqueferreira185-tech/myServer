@@ -39,7 +39,7 @@ export function renderizaCheckoutDescricao(planoSelecionado){
   const NomePlanoCheckoutDinamic = document.createElement('h3');
   NomePlanoCheckoutDinamic.innerText = `${planoSelecionado.nome}`;
   const checkoutParagrafo =  document.createElement('p');
-  checkoutParagrafo.innerText = `valor do plano: R$${planoSelecionado.preco}`
+  checkoutParagrafo.innerText = `valor do plano: R$${planoSelecionado.preco} / mês`
   const listaCheckout = document.createElement('ul');
 
   planoSelecionado.recursos.forEach((item) =>{
@@ -56,5 +56,62 @@ export function renderizaCheckoutDescricao(planoSelecionado){
 
   const cardHtmlCheckout = document.querySelector('.checkout-card');
   cardHtmlCheckout.appendChild(dadosDinamicos);
+
+}
+export function buildCancelModal(plano){
+  const divPrincipalModalCancel = document.createElement('div');
+  const divGuardaIcone = document.createElement('div');
+ divGuardaIcone.innerHTML = `
+   <svg xmlns="http://www.w3.org/2000/svg" 
+    fill="none" 
+    viewBox="0 0 24 24" 
+    stroke-width="1.5" 
+    stroke="currentColor" 
+    class="size-6">
+
+  <path 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+    d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" 
+  />
+</svg>
+`;
+divGuardaIcone.classList.add('estilizacao-svg')
+const tituloCancelModal = document.createElement('h2');
+tituloCancelModal.innerText = 'Tem certeza que deseja cancelar sua assinatura?';
+const subtituloCancelModal = document.createElement('h3');
+subtituloCancelModal.innerHTML =`Ao cancelar, você perderá os benefícios do seu plano <em>${plano.nome}</em>:`;
+const areaMostraPerdasPlano = document.createElement('div');
+const ulModalCancel =document.createElement('ul');
+plano.recursos.forEach((item) => {
+    const itensLista = document.createElement('li');
+    itensLista.innerText = item;
+    ulModalCancel.appendChild(itensLista);
+  });
+areaMostraPerdasPlano.innerHTML = `<p>Você perderá:</p>`;
+areaMostraPerdasPlano.appendChild(ulModalCancel);
+areaMostraPerdasPlano.classList.add('areaPerdaModal')
+
+const botaoContinuarModalCancel= document.createElement('button');
+botaoContinuarModalCancel.innerText = 'Continuar';
+botaoContinuarModalCancel.classList.add('botao-continuarModal');
+const confirmacaoCancelamentoModal = document.createElement('button'); 
+confirmacaoCancelamentoModal.innerText = 'Cancelar assinatura'
+confirmacaoCancelamentoModal.classList.add('botao-cancelarModal')
+const divAcoes = document.createElement('div');
+divAcoes.classList.add('botoesCancelModal');
+divAcoes.appendChild(botaoContinuarModalCancel);
+divAcoes.appendChild(confirmacaoCancelamentoModal);
+divPrincipalModalCancel.appendChild(divGuardaIcone);
+divPrincipalModalCancel.appendChild(tituloCancelModal);
+divPrincipalModalCancel.appendChild(subtituloCancelModal);
+divPrincipalModalCancel.appendChild(areaMostraPerdasPlano);
+divPrincipalModalCancel.appendChild(divAcoes);
+
+
+divPrincipalModalCancel.classList.add('divModalCancel');
+divPrincipalModalCancel.classList.add('aparecer');
+
+return divPrincipalModalCancel;
 
 }

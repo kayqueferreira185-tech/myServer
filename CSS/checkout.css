@@ -74,6 +74,7 @@ body{
     border: none;
     padding: 10px;
     border-radius: 999px;
+    cursor: pointer;
 }
 .botaoCheckout-pix{
     background-color: rgb(176, 250, 65);
@@ -82,7 +83,7 @@ body{
     max-width: 180px;
     padding: 12px;
     border-radius: 999px;
-
+    cursor: pointer;
 }
 .area-pagamento{
     display: flex;
