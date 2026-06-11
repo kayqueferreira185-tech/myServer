@@ -102,12 +102,14 @@ body{
 }
 .linha-cartao{
     display: flex;
-    gap: 12px;   
+    gap: 12px;  
 }
+
 .campo-cartao{
     display: flex;
     flex-direction: column;
     gap: 8px;
+    flex: 1;
 }
 
 .area-pix {

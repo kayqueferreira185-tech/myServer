@@ -16,3 +16,20 @@ if(!planoSelecionado){
     window.location.href = "index.html";
 }
 renderizaCheckoutDescricao(planoSelecionado);
+
+const areaVisivelCartao = document.querySelector('.formulario-pagamento');
+const areaGeralPagamento  = document.querySelector('.area-pagamento');
+const areaQrCodePix = document.querySelector('.area-pix.hidden');
+
+areaGeralPagamento.addEventListener('click', (e) => {
+    const retornoBuscaEvent = e.target.closest('.botaoCheckout-pix');
+    if (retornoBuscaEvent) {
+      areaVisivelCartao.classList.add('hidden');
+      areaQrCodePix.classList.remove('hidden');
+    }
+    const salvaAreaCartao = e.target.closest('.botaoCheckout-cartao');
+    if (salvaAreaCartao) {
+        areaQrCodePix.classList.add('hidden');
+        areaVisivelCartao.classList.remove('hidden');
+    }
+})
