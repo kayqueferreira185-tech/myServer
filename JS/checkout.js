@@ -33,3 +33,25 @@ areaGeralPagamento.addEventListener('click', (e) => {
         areaVisivelCartao.classList.remove('hidden');
     }
 })
+
+const nomeUserCheckout = document.querySelector('#nome');
+const emailUserCheckout = document.querySelector('#email');
+const telUserCheckout = document.querySelector('#telefone');
+const botaoFinalizaCheckout = document.querySelector('.finaliza-fluxo');
+
+botaoFinalizaCheckout.addEventListener('click', (e) =>{ 
+  const valor =  capturaValorInput();
+    console.log(valor)
+})
+
+function capturaValorInput(){
+    const nome = nomeUserCheckout.value;
+    const email = emailUserCheckout.value;
+    const telefone = telUserCheckout.value;
+    
+    return {
+        nome,
+        email,
+        telefone
+    }
+}
