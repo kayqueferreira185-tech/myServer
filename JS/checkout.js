@@ -38,6 +38,7 @@ const nomeUserCheckout = document.querySelector('#nome');
 const emailUserCheckout = document.querySelector('#email');
 const telUserCheckout = document.querySelector('#telefone');
 const botaoFinalizaCheckout = document.querySelector('.finaliza-fluxo');
+const erroSpanInputs = document.querySelector('.erro');
 
 botaoFinalizaCheckout.addEventListener('click', (e) =>{ 
   const valor =  capturaValorInput();
@@ -55,3 +56,11 @@ function capturaValorInput(){
         telefone
     }
 }
+function validaNomeInput(nome){
+ const valorRealNome =  nome.trim();
+    if (valorRealNome.length > 2 && valorRealNome.length <= 180 ){
+      return true 
+    }
+    return false
+}
+validaNomeInput(valor.nome)
