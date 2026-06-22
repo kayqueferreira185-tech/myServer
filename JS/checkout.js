@@ -58,9 +58,40 @@ function capturaValorInput(){
 }
 function validaNomeInput(nome){
  const valorRealNome =  nome.trim();
-    if (valorRealNome.length > 2 && valorRealNome.length <= 180 ){
-      return true 
+    if (!valorRealNome) {
+        return false;
     }
-    return false
+    if (valorRealNome.length > 2 && valorRealNome.length <= 180 ){
+      return true ;
+    }
+    return false;
+
 }
-validaNomeInput(valor.nome)
+
+function validaEmailInput(email){
+    const valorRealEmail = email.trim();
+    if(!valorRealEmail){
+        return false
+    }
+    if (valorRealEmail.length < 6 || valorRealEmail.length > 320){
+        return false;
+    }
+    const localArroba = valorRealEmail.indexOf('@');
+    if (localArroba === 0 || localArroba === valorRealEmail.length - 1 ){
+        return false;
+    }
+    const possivelEspaco = valorRealEmail.indexOf(' ');
+    if (possivelEspaco !== -1){
+        return false;
+    }  
+    const partes = valorRealEmail.split('@');
+    if (partes.length !== 2){
+        return false;
+    }
+    return true
+}
+
+validaNomeInput(valor.nome);
+validaEmailInput(valor.email)
+
+
