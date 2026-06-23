@@ -19,7 +19,7 @@ renderizaCheckoutDescricao(planoSelecionado);
 
 const areaVisivelCartao = document.querySelector('.formulario-pagamento');
 const areaGeralPagamento  = document.querySelector('.area-pagamento');
-const areaQrCodePix = document.querySelector('.area-pix.hidden');
+const areaQrCodePix = document.querySelector('.area-pix');
 
 areaGeralPagamento.addEventListener('click', (e) => {
     const retornoBuscaEvent = e.target.closest('.botaoCheckout-pix');
@@ -38,9 +38,10 @@ const nomeUserCheckout = document.querySelector('#nome');
 const emailUserCheckout = document.querySelector('#email');
 const telUserCheckout = document.querySelector('#telefone');
 const botaoFinalizaCheckout = document.querySelector('.finaliza-fluxo');
-const erroSpanInputs = document.querySelector('.erro');
+const erroSpanInputs = document.querySelectorAll('.erro');
 
 botaoFinalizaCheckout.addEventListener('click', (e) =>{ 
+  e.preventDefault()
   const valor =  capturaValorInput();
     console.log(valor)
 })
@@ -91,7 +92,34 @@ function validaEmailInput(email){
     return true
 }
 
-validaNomeInput(valor.nome);
-validaEmailInput(valor.email)
 
 
+const inputTel = document.querySelector('#telefone');
+
+inputTel.addEventListener('input', () =>{
+    const valorRealTelCheckout = inputTel.value;
+     const resultado = formatarTelefone(valorRealTelCheckout);
+     inputTel.value = resultado;
+     
+})
+function formatarTelefone(stringUtilitaria){
+    const valorFormatado = normalizaTel(stringUtilitaria);
+
+    const pedacosDDD =  valorFormatado.slice(0,2);
+    const meioNumero = valorFormatado.slice(2,7);
+    const finalNumero = valorFormatado.slice(7,11);
+    if (valorFormatado.length <= 2) return valorFormatado;
+      if (valorFormatado.length <= 7) return `(${pedacosDDD}) ${meioNumero}`;
+       return `(${pedacosDDD}) ${meioNumero}-${finalNumero}`;
+}
+    
+
+function normalizaTel(stringUtilitaria){
+    let valorVazio = "";
+    for (let letra of stringUtilitaria){
+        if (letra >= "0" && letra <= "9"){
+            valorVazio = valorVazio + letra;
+        }
+    }
+    return valorVazio;
+}
