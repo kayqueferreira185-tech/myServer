@@ -57,6 +57,8 @@ function capturaValorInput(){
         telefone
     }
 }
+const dados = capturaValorInput();
+
 function validaNomeInput(nome){
  const valorRealNome =  nome.trim();
     if (!valorRealNome) {
@@ -92,14 +94,10 @@ function validaEmailInput(email){
     return true
 }
 
-
-
-const inputTel = document.querySelector('#telefone');
-
-inputTel.addEventListener('input', () =>{
-    const valorRealTelCheckout = inputTel.value;
+telUserCheckout.addEventListener('input', () =>{
+    const valorRealTelCheckout = telUserCheckout.value;
      const resultado = formatarTelefone(valorRealTelCheckout);
-     inputTel.value = resultado;
+     telUserCheckout.value = resultado;
      
 })
 function formatarTelefone(stringUtilitaria){
@@ -122,4 +120,20 @@ function normalizaTel(stringUtilitaria){
         }
     }
     return valorVazio;
+}
+function validaTelefone(telefone){
+    const valorLimpo = normalizaTel(telefone.trim());
+    if (!valorLimpo) return false;
+    if (valorLimpo.length !== 11) {
+      return false;
+    }   
+    const arrayDigitos = valorLimpo.split("");
+    if (arrayDigitos.every(n => n === arrayDigitos[0])){
+        return false 
+    }
+    if (arrayDigitos[2] !== '9'){
+        return false
+    }
+    return true
+    
 }
