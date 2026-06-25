@@ -38,23 +38,36 @@ const nomeUserCheckout = document.querySelector('#nome');
 const emailUserCheckout = document.querySelector('#email');
 const telUserCheckout = document.querySelector('#telefone');
 const botaoFinalizaCheckout = document.querySelector('.finaliza-fluxo');
+const formularioPagamento = document.querySelector('.formulario-pagamento');
+const numeroCartao = document.querySelector('#numero-cartao');
+const dataValidadeCartao = document.querySelector('#validde');
+const CodigoCvc = document.querySelector('#CVC');
 const erroSpanInputs = document.querySelectorAll('.erro');
+
 
 botaoFinalizaCheckout.addEventListener('click', (e) =>{ 
   e.preventDefault()
   const valor =  capturaValorInput();
-    console.log(valor)
 })
+
+
 
 function capturaValorInput(){
     const nome = nomeUserCheckout.value;
     const email = emailUserCheckout.value;
     const telefone = telUserCheckout.value;
+    const numeroCard = numeroCartao.value;
+    const validadeCard = dataValidadeCartao.value;
+    const codigoCard = CodigoCvc.value;
     
     return {
         nome,
         email,
-        telefone
+        telefone,
+        numeroCard,
+        validadeCard,
+        codigoCard
+
     }
 }
 const dados = capturaValorInput();
@@ -136,4 +149,46 @@ function validaTelefone(telefone){
     }
     return true
     
+}
+
+
+
+numeroCartao.addEventListener('input', () =>{
+    const valorInputNumeroCartao = numeroCartao.value;
+    const resultadoFormatacao = criaMascaraCartao(valorInputNumeroCartao)
+    numeroCartao.value = resultadoFormatacao;
+});
+
+function formataNumeroCartao(stringUtilitariaCartao){
+        let valorVazio = "";
+    for (let letra of stringUtilitariaCartao){
+        if (letra >= "0" && letra <= "9"){
+            valorVazio = valorVazio + letra;
+        }
+    }
+    return valorVazio;
+}
+
+function criaMascaraCartao(stringUtilitariaCartao){
+  let resultado = '';
+  let contador = 0;
+  const valorFormaformatado = formataNumeroCartao(stringUtilitariaCartao);
+  for (let i = 0; i < valorFormaformatado.length; i++) {
+    contador = contador+ 1;
+    resultado = resultado + valorFormaformatado[i]
+    if (contador === 4 && i + 1 < valorFormaformatado.length) {
+        resultado += ' ';
+        contador = 0;
+        
+    }   
+  }
+return resultado;
+
+}
+
+function validaNumeroCartao(cartao){
+    const valorLimpoCartao = formataNumeroCartao(cartao.trim());
+    if (!valorLimpoCartao) return false;
+    if (valorLimpoCartao.length > 19) return false;
+    //falta inserir o algoritmo de luhn para finalizar validação, por isso não retorna true
 }
