@@ -40,15 +40,29 @@ const telUserCheckout = document.querySelector('#telefone');
 const botaoFinalizaCheckout = document.querySelector('.finaliza-fluxo');
 const formularioPagamento = document.querySelector('.formulario-pagamento');
 const numeroCartao = document.querySelector('#numero-cartao');
-const dataValidadeCartao = document.querySelector('#validde');
-const CodigoCvc = document.querySelector('#CVC');
+const dataValidadeCartao = document.querySelector('#validade');
+const CodigoCvv = document.querySelector('#CVV');
 const erroSpanInputs = document.querySelectorAll('.erro');
 
 
 botaoFinalizaCheckout.addEventListener('click', (e) =>{ 
   e.preventDefault()
-  const valor =  capturaValorInput();
+processaCheckout();
+ 
 })
+
+
+function processaCheckout() {
+  const dados = capturaValorInput();
+
+  validaNomeInput(dados.nome);
+  validaEmailInput(dados.email);
+  validaTelefone(dados.telefone);
+  validaNumeroCartao(dados.numeroCard);
+  validaValidadeCartao(dados.validadeCard);
+  validaCVV(dados.codigoCard);
+
+}
 
 
 
@@ -58,7 +72,7 @@ function capturaValorInput(){
     const telefone = telUserCheckout.value;
     const numeroCard = numeroCartao.value;
     const validadeCard = dataValidadeCartao.value;
-    const codigoCard = CodigoCvc.value;
+    const codigoCard = CodigoCvv.value;
     
     return {
         nome,
@@ -70,7 +84,6 @@ function capturaValorInput(){
 
     }
 }
-const dados = capturaValorInput();
 
 function validaNomeInput(nome){
  const valorRealNome =  nome.trim();
@@ -178,8 +191,7 @@ function criaMascaraCartao(stringUtilitariaCartao){
     resultado = resultado + valorFormaformatado[i]
     if (contador === 4 && i + 1 < valorFormaformatado.length) {
         resultado += ' ';
-        contador = 0;
-        
+        contador = 0;    
     }   
   }
 return resultado;
@@ -189,6 +201,64 @@ return resultado;
 function validaNumeroCartao(cartao){
     const valorLimpoCartao = formataNumeroCartao(cartao.trim());
     if (!valorLimpoCartao) return false;
-    if (valorLimpoCartao.length > 19) return false;
+    if (valorLimpoCartao.length > 19 || valorLimpoCartao.length < 16) return false;
     //falta inserir o algoritmo de luhn para finalizar validação, por isso não retorna true
+    return false 
+}
+
+dataValidadeCartao.addEventListener('input', () =>{ 
+    const ValorValidade = dataValidadeCartao.value;
+    const mascaraArmazenada = criaMascaraValidade(ValorValidade);
+    dataValidadeCartao.value = mascaraArmazenada;
+})
+
+
+function criaMascaraValidade(stringUtilitariaCartao){
+    const valorFormatado = formataNumeroCartao(stringUtilitariaCartao);
+    const primeiroPedaco = valorFormatado.slice(0,2);
+    const segundoPedaco = valorFormatado.slice(2,4);
+    if (valorFormatado.length < 2) return valorFormatado;
+    if (valorFormatado.length > 3) return `${primeiroPedaco}/${segundoPedaco}`;
+    
+    return valorFormatado;
+    }
+
+function validaValidadeCartao(cartao){
+    const validadeLimpa = formataNumeroCartao(cartao.trim());
+    if (!validadeLimpa) return false 
+    if (validadeLimpa.length !== 4 ) return false;
+    const arrayDigitos = validadeLimpa.split("");
+    if (arrayDigitos.every(n => n === arrayDigitos[0])){
+        return false 
+    }
+    const dataAtual = new Date();
+    const anoAtual = dataAtual.getFullYear() % 100;
+    const mesAtual = dataAtual.getMonth() +1;
+    const MM = validadeLimpa.slice(0,2);
+    const mes = Number(MM);
+    const AA = validadeLimpa.slice(2,4);
+    const ano = Number(AA);
+    if ( ano < anoAtual) return false;
+
+    if (ano > anoAtual )return true;
+
+    if (mes < mesAtual) return false;
+
+    return true
+
+}
+
+function validaCVV(CodigoCvv){
+    const valorSemEspaco = CodigoCvv.trim();
+    const soNumeros = /^\d+$/.test(valorSemEspaco);
+    if (!valorSemEspaco) return false;
+    if (!soNumeros) return false;
+    const arrayDigitos = valorSemEspaco.split("");
+    if (arrayDigitos.every(n => n === arrayDigitos[0])){
+        return false 
+    }
+    if (valorSemEspaco.length <3  || valorSemEspaco.length >4 ) return false
+    
+    return true
+    
 }
