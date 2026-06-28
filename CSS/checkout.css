@@ -100,9 +100,11 @@ body{
     padding: 26px;
     border-radius: 16px;
 }
-.linha-cartao{
-    display: flex;
-    gap: 12px;  
+.linha-cartao {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
 }
 
 .campo-cartao{
@@ -110,6 +112,7 @@ body{
     flex-direction: column;
     gap: 8px;
     flex: 1;
+    
 }
 
 .area-pix {
@@ -131,6 +134,9 @@ body{
     padding: 12px;
     border: 2px solid rgb(176, 250, 65);
     border-radius: 8px;
+    height: 42px; 
+    box-sizing: border-box;
+    
     
 }
 .input-padrao:focus{
@@ -197,4 +203,34 @@ body{
     cursor: pointer;
 }
 
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 
+.svg-erro {
+  width: 20px;
+  height: 20px;
+  stroke: #e74c3c;
+}
+
+.erro {
+  
+  align-items: center;
+  gap: 6px;
+  color: #e74c3c;
+  font-size: 12px;
+  display: none;
+  
+}
+.campo-cartao label {
+  display: block;
+  margin: 0;
+}
+
+.erro.show {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+} 

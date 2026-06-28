@@ -46,25 +46,57 @@ const erroSpanInputs = document.querySelectorAll('.erro');
 
 
 botaoFinalizaCheckout.addEventListener('click', (e) =>{ 
-  e.preventDefault()
+e.preventDefault();
 processaCheckout();
  
 })
 
-
 function processaCheckout() {
   const dados = capturaValorInput();
 
-  validaNomeInput(dados.nome);
-  validaEmailInput(dados.email);
-  validaTelefone(dados.telefone);
-  validaNumeroCartao(dados.numeroCard);
-  validaValidadeCartao(dados.validadeCard);
-  validaCVV(dados.codigoCard);
+    const nomeValido = validaNomeInput(dados.nome);
+    const emailValido =  validaEmailInput(dados.email);
+    const telefoneValido =  validaTelefone(dados.telefone);
+    const numeroCardValido =  validaNumeroCartao(dados.numeroCard);
+    const validadeCardValida =  validaValidadeCartao(dados.validadeCard);
+    const validoCvv =  validaCVV(dados.codigoCard);
+
+const validacoes = {
+    nome: {valido:nomeValido, mensagem: "digite um  nome válido"},
+    email:{valido:emailValido,mensagem: "digite um  email válido"},
+    telefone: {valido:telefoneValido, mensagem: "digite um  telefone válido"},
+    cartao: {valido:numeroCardValido,mensagem: "digite um  número de cartão válido"},
+    validade: {valido:validadeCardValida,mensagem: "digite uma validade válida"},
+    cvv: {valido: validoCvv, mensagem: "digite um código válido"}
+};
+
+const camposInvalidos = Object.keys(validacoes).filter(campo =>  !validacoes[campo].valido);
+
+if (camposInvalidos.length > 0){
+    mostraErro(camposInvalidos, validacoes);
+    return
+}
 
 }
 
 
+
+function mostraErro(camposInvalidos, validacoes){
+const erros = capturaCampoErro();
+camposInvalidos.forEach(campo => {
+    const elementoErro = erros[campo + "Erro"];
+    if (!elementoErro) return;
+    if (!validacoes[campo].valido) {
+    elementoErro.classList.add('show');
+    elementoErro.textContent = validacoes[campo].mensagem;
+}else {
+    elementoErro.classList.remove('show');
+    elementoErro.textContent = '';
+}
+});
+
+
+}
 
 function capturaValorInput(){
     const nome = nomeUserCheckout.value;
@@ -81,6 +113,25 @@ function capturaValorInput(){
         numeroCard,
         validadeCard,
         codigoCard
+
+    }
+}
+
+function capturaCampoErro(){
+    const nomeErro = document.querySelector('[data-campo="nome"]');
+    const emailErro = document.querySelector('[data-campo="email"]');
+    const telefoneErro = document.querySelector('[data-campo="telefone"]');
+    const cartaoErro = document.querySelector('[data-campo="cartao"]');
+    const validadeErro = document.querySelector('[data-campo="validade"]');
+    const cvvErro = document.querySelector('[data-campo="cvv"]');
+
+    return {
+        nomeErro,
+        emailErro,
+        telefoneErro,
+        cartaoErro,
+        validadeErro,
+        cvvErro
 
     }
 }
@@ -203,7 +254,7 @@ function validaNumeroCartao(cartao){
     if (!valorLimpoCartao) return false;
     if (valorLimpoCartao.length > 19 || valorLimpoCartao.length < 16) return false;
     //falta inserir o algoritmo de luhn para finalizar validação, por isso não retorna true
-    return false 
+    return true 
 }
 
 dataValidadeCartao.addEventListener('input', () =>{ 
