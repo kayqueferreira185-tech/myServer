@@ -1,0 +1,83 @@
+h1{
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+    font-style: italic;
+}
+
+.lista-ajuda-footer{
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+}
+.valor-dinamico h3{
+    font-style: italic;
+    color: rgb(176, 250, 65);
+
+}
+.valor-dinamico{
+    width: 100%;
+    max-width: 400px;
+    border: solid 2px rgb(176, 250, 65);
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 16px;
+    
+}
+
+.area-links{
+    display: flex;
+    gap: 20px;
+
+}
+
+.botao-finalizar{
+    text-decoration: none;
+    border: solid rgb(176, 250, 65);
+    padding: 12px;
+    border-radius: 999px;
+    background-color: rgb(176, 250, 65);
+    color: black;
+    border: solid 2px white;
+}
+.botao-finalizar:hover{
+    background-color: rgb(155, 236, 33);
+    border: solid 2px white;
+}
+.botao-retorno{
+    text-decoration: none;    
+    background-color: rgb(234, 80, 80);
+    border: solid white 2px;
+    color: black;
+    padding: 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    
+}
+
+.botao-retorno:hover{
+    background-color: rgb(222, 37, 37);
+    color: rgb(231, 192, 192);
+
+}
+
+.valor-anual{
+    font-size: large;
+    font-weight: bold;
+}
+footer{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+.svg-clipboard{
+    width: 20px;
+    color: rgb(155, 236, 33);
+}
+.titulo-wrapper{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: flex-start;
+}

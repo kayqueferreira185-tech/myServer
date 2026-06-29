@@ -103,7 +103,7 @@ function buildFeedbackUi(plano) {
   const linkAssinatura = document.createElement('a');
   linkAssinatura.innerText = 'Continuar assinatura';
   linkAssinatura.classList.add('botao-checkout')
-  linkAssinatura.href = './checkout.html';
+  linkAssinatura.href = './resumo.html';
 
   const divAcoes = document.createElement('div');
   divAcoes.classList.add('divFlex');

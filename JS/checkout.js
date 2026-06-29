@@ -1,22 +1,3 @@
-
-import planos from "../dados/planos.js";
-import{renderizaCheckoutDescricao} from './render.js';
-
-const idPlanoPersistido = localStorage.getItem('planoSelecionado');
-if (!idPlanoPersistido) {
-  alert('você não pode prosseguir');
-  window.location.href = "index.html";
-}
-const planoSelecionado = planos.find((item) =>{ 
-    return item.id === idPlanoPersistido;
-});
-
-if(!planoSelecionado){
-    alert('você não pode prosseguir');
-    window.location.href = "index.html";
-}
-renderizaCheckoutDescricao(planoSelecionado);
-
 const areaVisivelCartao = document.querySelector('.formulario-pagamento');
 const areaGeralPagamento  = document.querySelector('.area-pagamento');
 const areaQrCodePix = document.querySelector('.area-pix');
@@ -33,6 +14,7 @@ areaGeralPagamento.addEventListener('click', (e) => {
         areaVisivelCartao.classList.remove('hidden');
     }
 })
+
 
 const nomeUserCheckout = document.querySelector('#nome');
 const emailUserCheckout = document.querySelector('#email');
@@ -85,10 +67,11 @@ function mostraErro(camposInvalidos, validacoes){
 const erros = capturaCampoErro();
 camposInvalidos.forEach(campo => {
     const elementoErro = erros[campo + "Erro"];
+    const msg = elementoErro.querySelector('.msg');
     if (!elementoErro) return;
     if (!validacoes[campo].valido) {
     elementoErro.classList.add('show');
-    elementoErro.textContent = validacoes[campo].mensagem;
+    msg.textContent = validacoes[campo].mensagem;
 }else {
     elementoErro.classList.remove('show');
     elementoErro.textContent = '';

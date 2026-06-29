@@ -7,13 +7,16 @@
 body{
     min-height: 100vh;
 }
-.titulo-pagamento{
+h1{
     text-align: center;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+    font-style: italic;
+    font-size: 45px;
 }
 
 .area-checkout{
     width: 100%;
-    max-width: 1200px;
+    max-width: 900px;
     margin: 30px auto;
     display: flex;
     flex-direction: row;
@@ -63,7 +66,7 @@ body{
 .botoesCheckout-CTA{
     display: flex;
     gap: 16px;
-    justify-content: flex-start;
+    justify-content: center;
 
 }
 .botaoCheckout-cartao{
@@ -91,6 +94,7 @@ body{
     border: solid  2px rgb(176, 250, 65);
     padding: 26px;
     border-radius: 16px;
+    flex: 1;
 }
 .formulario-pagamento{
     display: flex;
@@ -111,7 +115,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 8px;
-    flex: 1;
+  
     
 }
 
@@ -146,20 +150,9 @@ body{
     display: flex;
     flex-direction: column;
     gap: 36px;
-    flex: 1.5;
+    flex: 1;
     
 
-}
-.valor-dinamico{
-    width: 100%;
-    max-width: 400px;
-    border: solid 2px rgb(176, 250, 65);
-    padding: 36px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    border-radius: 16px;
-    
 }
 
 .checkout-card ul{
@@ -168,21 +161,7 @@ body{
     gap: 12px;
     
 }
-.valor-dinamico h3{
-    font-style: italic;
-    color: rgb(176, 250, 65);
 
-}
-.checkout-resumo {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  flex: 3;
-  border: solid rgb(176, 250, 65);
-  padding: 26px;
-  border-radius: 16px;
-  max-width: 450px;
-}
 .area-icone-titulo{
     border-bottom: solid 1px rgb(176, 250, 65);
     margin-bottom: 16px;
@@ -234,3 +213,15 @@ body{
   align-items: center;
   gap: 4px;
 } 
+.lista-ajuda-footer{
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+}
+
+footer{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
