@@ -311,4 +311,22 @@ footer{
     font-size: 16px; 
     cursor: pointer;
 }
+footer{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding: 25 0 25px;
+}
 
+.area-links{
+    display: flex;
+    gap: 20px;
+
+}
+
+.lista-ajuda-footer{
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+}

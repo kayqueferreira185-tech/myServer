@@ -70,6 +70,7 @@ footer{
     display: flex;
     gap: 20px;
     justify-content: center;
+    padding: 25 0 25px;
 }
 .svg-clipboard{
     width: 20px;

@@ -16,7 +16,7 @@ h1{
 
 .area-checkout{
     width: 100%;
-    max-width: 900px;
+    max-width: 800px;
     margin: 30px auto;
     display: flex;
     flex-direction: row;
@@ -224,4 +224,5 @@ footer{
     display: flex;
     gap: 20px;
     justify-content: center;
+    padding: 25 0 25px;
 }
