@@ -1,3 +1,14 @@
+import {
+  validaNomeInput,
+  validaEmailInput,
+  validaTelefone,
+  validaNumeroCartao,
+  validaValidadeCartao,
+  validaCVV
+} from './validacoes.js';
+
+import {extrairNumero} from './utils.js'
+
 const areaVisivelCartao = document.querySelector('.formulario-pagamento');
 const areaGeralPagamento  = document.querySelector('.area-pagamento');
 const areaQrCodePix = document.querySelector('.area-pix');
@@ -14,7 +25,6 @@ areaGeralPagamento.addEventListener('click', (e) => {
         areaVisivelCartao.classList.remove('hidden');
     }
 })
-
 
 const nomeUserCheckout = document.querySelector('#nome');
 const emailUserCheckout = document.querySelector('#email');
@@ -58,10 +68,7 @@ if (camposInvalidos.length > 0){
     mostraErro(camposInvalidos, validacoes);
     return
 }
-
 }
-
-
 
 function mostraErro(camposInvalidos, validacoes){
 const erros = capturaCampoErro();
@@ -77,8 +84,6 @@ camposInvalidos.forEach(campo => {
     elementoErro.textContent = '';
 }
 });
-
-
 }
 
 function capturaValorInput(){
@@ -119,41 +124,6 @@ function capturaCampoErro(){
     }
 }
 
-function validaNomeInput(nome){
- const valorRealNome =  nome.trim();
-    if (!valorRealNome) {
-        return false;
-    }
-    if (valorRealNome.length > 2 && valorRealNome.length <= 180 ){
-      return true ;
-    }
-    return false;
-
-}
-
-function validaEmailInput(email){
-    const valorRealEmail = email.trim();
-    if(!valorRealEmail){
-        return false
-    }
-    if (valorRealEmail.length < 6 || valorRealEmail.length > 320){
-        return false;
-    }
-    const localArroba = valorRealEmail.indexOf('@');
-    if (localArroba === 0 || localArroba === valorRealEmail.length - 1 ){
-        return false;
-    }
-    const possivelEspaco = valorRealEmail.indexOf(' ');
-    if (possivelEspaco !== -1){
-        return false;
-    }  
-    const partes = valorRealEmail.split('@');
-    if (partes.length !== 2){
-        return false;
-    }
-    return true
-}
-
 telUserCheckout.addEventListener('input', () =>{
     const valorRealTelCheckout = telUserCheckout.value;
      const resultado = formatarTelefone(valorRealTelCheckout);
@@ -161,7 +131,7 @@ telUserCheckout.addEventListener('input', () =>{
      
 })
 function formatarTelefone(stringUtilitaria){
-    const valorFormatado = normalizaTel(stringUtilitaria);
+    const valorFormatado = extrairNumero(stringUtilitaria);
 
     const pedacosDDD =  valorFormatado.slice(0,2);
     const meioNumero = valorFormatado.slice(2,7);
@@ -169,34 +139,7 @@ function formatarTelefone(stringUtilitaria){
     if (valorFormatado.length <= 2) return valorFormatado;
       if (valorFormatado.length <= 7) return `(${pedacosDDD}) ${meioNumero}`;
        return `(${pedacosDDD}) ${meioNumero}-${finalNumero}`;
-}
-    
-
-function normalizaTel(stringUtilitaria){
-    let valorVazio = "";
-    for (let letra of stringUtilitaria){
-        if (letra >= "0" && letra <= "9"){
-            valorVazio = valorVazio + letra;
-        }
-    }
-    return valorVazio;
-}
-function validaTelefone(telefone){
-    const valorLimpo = normalizaTel(telefone.trim());
-    if (!valorLimpo) return false;
-    if (valorLimpo.length !== 11) {
-      return false;
-    }   
-    const arrayDigitos = valorLimpo.split("");
-    if (arrayDigitos.every(n => n === arrayDigitos[0])){
-        return false 
-    }
-    if (arrayDigitos[2] !== '9'){
-        return false
-    }
-    return true
-    
-}
+}   
 
 
 
@@ -206,38 +149,21 @@ numeroCartao.addEventListener('input', () =>{
     numeroCartao.value = resultadoFormatacao;
 });
 
-function formataNumeroCartao(stringUtilitariaCartao){
-        let valorVazio = "";
-    for (let letra of stringUtilitariaCartao){
-        if (letra >= "0" && letra <= "9"){
-            valorVazio = valorVazio + letra;
-        }
-    }
-    return valorVazio;
-}
 
 function criaMascaraCartao(stringUtilitariaCartao){
   let resultado = '';
   let contador = 0;
-  const valorFormaformatado = formataNumeroCartao(stringUtilitariaCartao);
-  for (let i = 0; i < valorFormaformatado.length; i++) {
+  const valorFormatado = extrairNumero(stringUtilitariaCartao);
+  for (let i = 0; i < valorFormatado.length; i++) {
     contador = contador+ 1;
-    resultado = resultado + valorFormaformatado[i]
-    if (contador === 4 && i + 1 < valorFormaformatado.length) {
+    resultado = resultado + valorFormatado[i]
+    if (contador === 4 && i + 1 < valorFormatado.length) {
         resultado += ' ';
         contador = 0;    
     }   
   }
 return resultado;
 
-}
-
-function validaNumeroCartao(cartao){
-    const valorLimpoCartao = formataNumeroCartao(cartao.trim());
-    if (!valorLimpoCartao) return false;
-    if (valorLimpoCartao.length > 19 || valorLimpoCartao.length < 16) return false;
-    //falta inserir o algoritmo de luhn para finalizar validação, por isso não retorna true
-    return true 
 }
 
 dataValidadeCartao.addEventListener('input', () =>{ 
@@ -248,7 +174,7 @@ dataValidadeCartao.addEventListener('input', () =>{
 
 
 function criaMascaraValidade(stringUtilitariaCartao){
-    const valorFormatado = formataNumeroCartao(stringUtilitariaCartao);
+    const valorFormatado = extrairNumero(stringUtilitariaCartao);
     const primeiroPedaco = valorFormatado.slice(0,2);
     const segundoPedaco = valorFormatado.slice(2,4);
     if (valorFormatado.length < 2) return valorFormatado;
@@ -257,42 +183,4 @@ function criaMascaraValidade(stringUtilitariaCartao){
     return valorFormatado;
     }
 
-function validaValidadeCartao(cartao){
-    const validadeLimpa = formataNumeroCartao(cartao.trim());
-    if (!validadeLimpa) return false 
-    if (validadeLimpa.length !== 4 ) return false;
-    const arrayDigitos = validadeLimpa.split("");
-    if (arrayDigitos.every(n => n === arrayDigitos[0])){
-        return false 
-    }
-    const dataAtual = new Date();
-    const anoAtual = dataAtual.getFullYear() % 100;
-    const mesAtual = dataAtual.getMonth() +1;
-    const MM = validadeLimpa.slice(0,2);
-    const mes = Number(MM);
-    const AA = validadeLimpa.slice(2,4);
-    const ano = Number(AA);
-    if ( ano < anoAtual) return false;
 
-    if (ano > anoAtual )return true;
-
-    if (mes < mesAtual) return false;
-
-    return true
-
-}
-
-function validaCVV(CodigoCvv){
-    const valorSemEspaco = CodigoCvv.trim();
-    const soNumeros = /^\d+$/.test(valorSemEspaco);
-    if (!valorSemEspaco) return false;
-    if (!soNumeros) return false;
-    const arrayDigitos = valorSemEspaco.split("");
-    if (arrayDigitos.every(n => n === arrayDigitos[0])){
-        return false 
-    }
-    if (valorSemEspaco.length <3  || valorSemEspaco.length >4 ) return false
-    
-    return true
-    
-}
