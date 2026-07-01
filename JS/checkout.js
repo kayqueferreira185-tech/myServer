@@ -72,19 +72,42 @@ if (camposInvalidos.length > 0){
 }
 }
 
+const { overlay: overlayModal, modal, iconeFechar } = capturaModal();
+
+overlayModal.addEventListener('click', (e) => {
+
+  const actionElement = e.target.closest('.icone-fechar-modal');
+  if (actionElement) {
+    fechaModalConfirmacao();
+    return;
+  }
+
+  if (modal.contains(e.target)) return;
+
+  if (e.target === overlayModal) {
+    fechaModalConfirmacao();
+  }
+
+});
+
 function abreModalConfirmacao(){
     const modalCompleto =  capturaModal();
     modalCompleto.overlay.classList.add('ativo');
 
 }
-
+function fechaModalConfirmacao(){
+    const modalCompleto = capturaModal();
+    modalCompleto.overlay.classList.remove('ativo');
+}
 function capturaModal(){
     const overlay = document.querySelector('.modal-confirmacao');
-    const modal = document.querySelector('.modal-conteudo')
+    const modal = document.querySelector('.modal-conteudo');
+    const iconeFechar = document.querySelector('.icone-fechar-modal');
 
     return {
         overlay,
-        modal
+        modal,
+        iconeFechar
     }
 }
 
