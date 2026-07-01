@@ -67,7 +67,25 @@ const camposInvalidos = Object.keys(validacoes).filter(campo =>  !validacoes[cam
 if (camposInvalidos.length > 0){
     mostraErro(camposInvalidos, validacoes);
     return
+}else{
+    abreModalConfirmacao();
 }
+}
+
+function abreModalConfirmacao(){
+    const modalCompleto =  capturaModal();
+    modalCompleto.overlay.classList.add('ativo');
+
+}
+
+function capturaModal(){
+    const overlay = document.querySelector('.modal-confirmacao');
+    const modal = document.querySelector('.modal-conteudo')
+
+    return {
+        overlay,
+        modal
+    }
 }
 
 function mostraErro(camposInvalidos, validacoes){
