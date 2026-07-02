@@ -78,17 +78,27 @@ overlayModal.addEventListener('click', (e) => {
 
   const actionElement = e.target.closest('.icone-fechar-modal');
   if (actionElement) {
-    fechaModalConfirmacao();
-    return;
-  }
+   fechaEClean();
+        return;
+    }
+    
 
-  if (modal.contains(e.target)) return;
+  if (modal.contains(e.target)) 
+    return;
 
   if (e.target === overlayModal) {
-    fechaModalConfirmacao();
+     fechaEClean();
+     return;
   }
 
-});
+}); 
+
+function fechaEClean(){
+    fechaModalConfirmacao();
+    limpaFormulario();
+
+}
+
 
 function abreModalConfirmacao(){
     const modalCompleto =  capturaModal();
@@ -120,11 +130,30 @@ camposInvalidos.forEach(campo => {
     if (!validacoes[campo].valido) {
     elementoErro.classList.add('show');
     msg.textContent = validacoes[campo].mensagem;
-}else {
-    elementoErro.classList.remove('show');
-    elementoErro.textContent = '';
 }
 });
+}
+
+function limpaFormulario(){
+    limpaErroVisual();
+
+    nomeUserCheckout.value = '';
+    emailUserCheckout.value = '';
+    telUserCheckout.value = '';
+    numeroCartao.value = '';
+    dataValidadeCartao.value = '';
+    CodigoCvv.value ='';   
+
+}
+function limpaErroVisual(){
+    const erros =  capturaCampoErro();
+
+    for (const elementoErro of Object.values(erros)){
+      const msg = elementoErro.querySelector('.msg'); 
+      elementoErro.classList.remove('show');
+      msg.textContent = ''
+
+    }
 }
 
 function capturaValorInput(){
