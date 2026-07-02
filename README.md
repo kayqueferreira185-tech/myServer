@@ -4,17 +4,70 @@ Projeto front-end de uma plataforma fictícia de hospedagem de servidores, desen
 
 O usuário pode navegar entre os planos disponíveis, visualizar um resumo da compra e concluir um fluxo completo de checkout com validações, máscaras de entrada e confirmação da compra.
 
+ 🔗 Acesse o projeto
+
+**Projeto online:**
+https://kayqueferreira185-tech.github.io/myServer/
+
+**Repositório:**
+https://github.com/kayqueferreira185-tech/projeto_escolha_seu_plano
+
+📸 Demonstração
+
+A seguir estão algumas telas do fluxo principal da aplicação.
+
+---
+
+### Página inicial
+
+Visualização dos planos disponíveis, renderizados dinamicamente em JavaScript.
+
+![Página inicial](readme/home.png)
+
+---
+
+### Seleção do plano
+
+Após selecionar um plano, um modal apresenta um resumo da assinatura antes da confirmação.
+
+![Seleção do plano](readme/selecao-plano.png)
+
+---
+
+### Resumo da compra
+
+Resumo da assinatura escolhida, reconstruído dinamicamente a partir do LocalStorage.
+
+![Resumo da compra](readme/resumo.png)
+
+---
+
+### Checkout
+
+Formulário de pagamento com máscaras de entrada, validações e opção de pagamento via cartão ou Pix.
+
+![Checkout](readme/checkout.png)
+
+---
+
+### Compra realizada
+
+Modal exibido após a validação dos dados, concluindo o fluxo da aplicação.
+
+![Compra realizada](readme/confirmacao.png)
+
 🚀 Funcionalidades
-Renderização dinâmica dos planos.
-Seleção de plano.
-Resumo da compra.
-Persistência do plano selecionado utilizando localStorage.
-Checkout com validação completa dos campos.
-Máscaras para telefone, cartão e validade.
-Alternância entre pagamento por cartão e Pix.
-Exibição de mensagens de erro em tempo real.
-Modal de confirmação de compra.
-Organização do código utilizando módulos ES6.
+- Renderização dinâmica dos planos.
+- Seleção de plano.
+- Resumo da compra.
+- Persistência do plano selecionado utilizando localStorage.
+- Checkout com validação completa dos campos.
+- Máscaras para telefone, cartão e validade.
+- Alternância entre pagamento por cartão e Pix.
+- Exibição de mensagens de erro em tempo real.
+- Modal de confirmação de compra.
+- Organização do código utilizando módulos ES6.
+
 🛠 Tecnologias utilizadas
 HTML5
 CSS3
@@ -52,7 +105,7 @@ projeto_escolha_seu_plano/
 
 ⚙️ Como funciona
 
-Na página inicial, os planos são renderizados dinamamente através do arquivo planos.js.
+Na página inicial, os planos são renderizados dinamicamente através do arquivo planos.js.
 
 Quando o usuário seleciona um plano, apenas o seu ID é armazenado no localStorage.
 
@@ -64,24 +117,24 @@ Durante o checkout, o formulário realiza validações dos dados informados, exi
 
 Durante o desenvolvimento deste projeto foram aplicados conceitos como:
 
-Manipulação do DOM
-Event Delegation
-Modularização com ES Modules
-Organização de responsabilidades entre arquivos
-Renderização dinâmica
-Criação de componentes via JavaScript
-Validação de formulários
-Máscaras de entrada
-Manipulação de classes CSS
-Persistência de dados com LocalStorage
-Fluxo entre múltiplas páginas
+- Manipulação do DOM
+- Event Delegation
+- Modularização com ES Modules
+- Organização de responsabilidades entre arquivos
+- Renderização dinâmica
+- Criação de componentes via JavaScript
+- Validação de formulários
+- Máscaras de entrada
+- Manipulação de classes CSS
+- Persistência de dados com LocalStorage
+- Fluxo entre múltiplas páginas
+
 📌 Observações
 
 Este projeto foi desenvolvido como parte do meu processo de aprendizado em desenvolvimento Front-end, tendo como foco principal a prática de JavaScript, manipulação do DOM, modularização e arquitetura básica de aplicações.
 
 Durante seu desenvolvimento, meu conhecimento sobre responsividade ainda estava em evolução. Por esse motivo, algumas interfaces podem apresentar limitações em telas menores. Pretendo revisitar este projeto futuramente para aplicar melhorias relacionadas à responsividade, acessibilidade e outras boas práticas adquiridas ao longo dos estudos.
 
-Este projeto é uma simulação para fins de estudo e portfólio. Nenhum pagamento é processado e todos os dados utilizados durante o checkout são fictícios.
 
 👨‍💻 Autor
 
