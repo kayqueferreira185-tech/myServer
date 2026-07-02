@@ -10,7 +10,7 @@ O usuário pode navegar entre os planos disponíveis, visualizar um resumo da co
 https://kayqueferreira185-tech.github.io/myServer/
 
 **Repositório:**
-https://github.com/kayqueferreira185-tech/projeto_escolha_seu_plano
+https://github.com/kayqueferreira185-tech/myServer
 
 📸 Demonstração
 
